@@ -1,0 +1,18 @@
+Source: erlang-p1-stun
+Priority: optional
+Maintainer: Philipp Huebner <debalance@debian.org>
+Build-Depends: debhelper (>= 9), dh-rebar, erlang-eunit, erlang-p1-tls, erlang-p1-utils
+Standards-Version: 3.9.5
+Section: libs
+Homepage: https://github.com/processone/stun
+
+
+Package: erlang-p1-stun
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, erlang-base | ${erlang-abi:Depends},
+         ${erlang:Depends}, erlang-p1-tls, erlang-p1-utils
+Suggests: stun-server | turn-server
+Description: STUN library for Erlang
+ This library was written for ejabberd which still uses it.
+ It was split off into it's own project to follow
+ Erlang/OTP guidelines.
