@@ -3,6 +3,7 @@ erlang-p1-stun (0.2015.09.16-0.1) unstable; urgency=medium
   * Imported Upstream version 0.2015.09.16.
   * Name me as the maintainer.
   * Add VCS-* fields in debian/control.
+  * Refresh remove-deps.diff.
 
  -- Mathias Ertl <mati@jabber.at>  Fri, 02 Oct 2015 18:49:02 +0200
 
