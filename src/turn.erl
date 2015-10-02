@@ -5,7 +5,7 @@
 %%% Created : 23 Aug 2009 by Evgeniy Khramtsov <ekhramtsov@process-one.net>
 %%%
 %%%
-%%% stun, Copyright (C) 2002-2014   ProcessOne
+%%% stun, Copyright (C) 2002-2015   ProcessOne
 %%%
 %%% This program is free software; you can redistribute it and/or
 %%% modify it under the terms of the GNU General Public License as
@@ -23,6 +23,7 @@
 %%% 02111-1307 USA
 %%%
 %%%-------------------------------------------------------------------
+
 -module(turn).
 
 -define(GEN_FSM, gen_fsm).
@@ -64,8 +65,8 @@
 	 realm = <<"">>                 :: binary(),
 	 key = {<<"">>, <<"">>, <<"">>} :: {binary(), binary(), binary()},
 	 server_name = <<"">>           :: binary(),
-	 permissions = ?DICT:new()      :: dict(),
-	 channels = ?DICT:new()         :: dict(),
+	 permissions = ?DICT:new(),
+	 channels = ?DICT:new(),
 	 max_permissions                :: non_neg_integer() | atom(),
 	 relay_ip = {127,0,0,1}         :: inet:ip_address(),
 	 min_port = 49152               :: non_neg_integer(),
