@@ -1,4 +1,4 @@
-erlang-p1-stun (0.2015.09.16-0.1) unstable; urgency=medium
+erlang-p1-stun (0.2015.09.16-0.1local) unstable; urgency=medium
 
   * Imported Upstream version 0.2015.09.16.
   * Name me as the maintainer.
