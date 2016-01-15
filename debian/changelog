@@ -1,3 +1,11 @@
+erlang-p1-stun (1:0.9.0-0.1) unstable; urgency=medium
+
+  * New upstream release.
+  * This package now uses upstream releases instead of a git snapshot,
+    hence the versioning has changed.
+
+ -- Mathias Ertl <mati@jabber.at>  Fri, 15 Jan 2016 21:49:56 +0100
+
 erlang-p1-stun (0.2015.09.16-0.2local) unstable; urgency=medium
 
   * Rebuild with new erlang-p1-tls.
