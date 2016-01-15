@@ -5,22 +5,19 @@
 %%% Created :  8 Aug 2009 by Evgeniy Khramtsov <ekhramtsov@process-one.net>
 %%%
 %%%
-%%% stun, Copyright (C) 2002-2015   ProcessOne
+%%% Copyright (C) 2002-2015 ProcessOne, SARL. All Rights Reserved.
 %%%
-%%% This program is free software; you can redistribute it and/or
-%%% modify it under the terms of the GNU General Public License as
-%%% published by the Free Software Foundation; either version 2 of the
-%%% License, or (at your option) any later version.
+%%% Licensed under the Apache License, Version 2.0 (the "License");
+%%% you may not use this file except in compliance with the License.
+%%% You may obtain a copy of the License at
 %%%
-%%% This program is distributed in the hope that it will be useful,
-%%% but WITHOUT ANY WARRANTY; without even the implied warranty of
-%%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-%%% General Public License for more details.
+%%%     http://www.apache.org/licenses/LICENSE-2.0
 %%%
-%%% You should have received a copy of the GNU General Public License
-%%% along with this program; if not, write to the Free Software
-%%% Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
-%%% 02111-1307 USA
+%%% Unless required by applicable law or agreed to in writing, software
+%%% distributed under the License is distributed on an "AS IS" BASIS,
+%%% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+%%% See the License for the specific language governing permissions and
+%%% limitations under the License.
 %%%
 %%%-------------------------------------------------------------------
 
@@ -66,8 +63,8 @@
 -type addr() :: {inet:ip_address(), inet:port_number()}.
 
 -record(state,
-	{sock                        :: inet:socket() | p1_tls:tls_socket(),
-	 sock_mod = gen_tcp          :: gen_udp | gen_tcp | p1_tls,
+	{sock                        :: inet:socket() | fast_tls:tls_socket(),
+	 sock_mod = gen_tcp          :: gen_udp | gen_tcp | fast_tls,
 	 certfile                    :: iodata(),
 	 peer = {{0,0,0,0}, 0}       :: addr(),
 	 tref = make_ref()           :: reference(),
@@ -153,9 +150,9 @@ handle_sync_event(_Event, _From, StateName, State) ->
     {reply, {error, badarg}, StateName, State}.
 
 handle_info({tcp, _Sock, TLSData}, StateName,
-	    #state{sock_mod = p1_tls} = State) ->
+	    #state{sock_mod = fast_tls} = State) ->
     NewState = update_shaper(State, TLSData),
-    case p1_tls:recv_data(NewState#state.sock, TLSData) of
+    case fast_tls:recv_data(NewState#state.sock, TLSData) of
 	{ok, Data} ->
 	    process_data(StateName, NewState, Data);
 	_Err ->
@@ -583,16 +580,15 @@ cancel_timer(TRef) ->
     end.
 
 now_priority() ->
-    {MSec, Sec, USec} = now(),
-    -((MSec*1000000 + Sec)*1000000 + USec).
+    {p1_time_compat:monotonic_time(micro_seconds), p1_time_compat:unique_integer([monotonic])}.
 
 clean_treap(Treap, CleanPriority) ->
     case treap:is_empty(Treap) of
 	true ->
 	    Treap;
 	false ->
-	    {_Key, Priority, _Value} = treap:get_root(Treap),
-	    if Priority > CleanPriority ->
+	    {_Key, {TS, _}, _Value} = treap:get_root(Treap),
+	    if TS > CleanPriority ->
 		    clean_treap(treap:delete_root(Treap), CleanPriority);
 	       true ->
 		    Treap
@@ -601,13 +597,14 @@ clean_treap(Treap, CleanPriority) ->
 
 make_nonce(Addr, Nonces) ->
     Priority = now_priority(),
+    {TS, _} = Priority,
     Nonce = list_to_binary(integer_to_list(random:uniform(1 bsl 32))),
-    NewNonces = clean_treap(Nonces, Priority + ?NONCE_LIFETIME),
+    NewNonces = clean_treap(Nonces, TS + ?NONCE_LIFETIME),
     {Nonce, treap:insert(Nonce, Priority, Addr, NewNonces)}.
 
 have_nonce(Nonce, Nonces) ->
-    Priority = now_priority(),
-    NewNonces = clean_treap(Nonces, Priority + ?NONCE_LIFETIME),
+    TS = p1_time_compat:monotonic_time(micro_seconds),
+    NewNonces = clean_treap(Nonces, TS + ?NONCE_LIFETIME),
     case treap:lookup(Nonce, NewNonces) of
 	{ok, _, _} ->
 	    {true, NewNonces};
@@ -623,7 +620,7 @@ addr_to_str(Addr) ->
 get_sockmod(Opts) ->
     case proplists:get_bool(tls, Opts) of
 	true ->
-	    p1_tls;
+	    fast_tls;
 	false ->
 	    gen_tcp
     end.
@@ -636,18 +633,18 @@ get_certfile(Opts) ->
 	    undefined
     end.
 
-maybe_starttls(_Sock, p1_tls, undefined, {IP, Port}) ->
+maybe_starttls(_Sock, fast_tls, undefined, {IP, Port}) ->
     error_logger:error_msg("failed to start TLS connection for ~s:~p: "
 			   "option 'certfile' is not set",
 			   [inet_parse:ntoa(IP), Port]),
     {error, eprotonosupport};
-maybe_starttls(Sock, p1_tls, CertFile, _PeerAddr) ->
-    p1_tls:tcp_to_tls(Sock, [{certfile, CertFile}]);
+maybe_starttls(Sock, fast_tls, CertFile, _PeerAddr) ->
+    fast_tls:tcp_to_tls(Sock, [{certfile, CertFile}]);
 maybe_starttls(Sock, gen_tcp, _CertFile, _PeerAddr) ->
     {ok, Sock}.
 
 seed() ->
-    {A, B, C} = now(),
+    {A, B, C} = p1_time_compat:timestamp(),
     random:seed(A, B, C).
 
 prepare_response(State, Msg) ->
