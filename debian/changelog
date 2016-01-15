@@ -5,6 +5,7 @@ erlang-p1-stun (1.0.0-0.1) unstable; urgency=medium
     hence the versioning has changed.
   * Add minimum versions for erlang-p1-utils and erlang-p1-tls.
   * Use upstream tags for source packages.
+  * Name me as a maintainer.
 
  -- Mathias Ertl <mati@jabber.at>  Fri, 15 Jan 2016 21:49:56 +0100
 

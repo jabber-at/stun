@@ -1,6 +1,7 @@
 Source: erlang-p1-stun
 Priority: optional
-Maintainer: Philipp Huebner <debalance@debian.org>
+Maintainer: Mathias Ertl <mati@jabber.at>
+XSBC-Orig-Maintainer: Philipp Huebner <debalance@debian.org>
 Build-Depends: debhelper (>= 9), dh-rebar, erlang-eunit, erlang-p1-tls (>= 1.0.0),
  erlang-p1-utils (>= 1.0.2)
 Standards-Version: 3.9.5
