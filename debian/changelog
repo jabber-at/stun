@@ -4,6 +4,8 @@ erlang-p1-stun (1.0.0-0.2) unstable; urgency=medium
     * Include debian/watch file.
     * Enable eunit tests.
     * Update debian/copyright.
+    * Add erlang-syntax-tools as build dependency.
+    * Update Standards-Version to 3.9.6.
 
  -- Mathias Ertl <mati@jabber.at>  Sat, 23 Jan 2016 22:45:25 +0100
 
