@@ -1,3 +1,10 @@
+erlang-p1-stun (1.0.0-0.2) unstable; urgency=medium
+
+  * Merge changes from upstream:
+    * Include debian/watch file.
+
+ -- Mathias Ertl <mati@jabber.at>  Fri, 15 Jan 2016 21:49:56 +0100
+
 erlang-p1-stun (1.0.0-0.1) unstable; urgency=medium
 
   * New upstream release.
