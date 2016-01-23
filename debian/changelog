@@ -5,7 +5,7 @@ erlang-p1-stun (1.0.0-0.2) unstable; urgency=medium
     * Enable eunit tests.
     * Update debian/copyright.
 
- -- Mathias Ertl <mati@jabber.at>  Fri, 15 Jan 2016 21:49:56 +0100
+ -- Mathias Ertl <mati@jabber.at>  Sat, 23 Jan 2016 22:45:25 +0100
 
 erlang-p1-stun (1.0.0-0.1) unstable; urgency=medium
 
