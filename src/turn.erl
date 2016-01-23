@@ -5,19 +5,22 @@
 %%% Created : 23 Aug 2009 by Evgeniy Khramtsov <ekhramtsov@process-one.net>
 %%%
 %%%
-%%% Copyright (C) 2002-2015 ProcessOne, SARL. All Rights Reserved.
+%%% stun, Copyright (C) 2002-2015   ProcessOne
 %%%
-%%% Licensed under the Apache License, Version 2.0 (the "License");
-%%% you may not use this file except in compliance with the License.
-%%% You may obtain a copy of the License at
+%%% This program is free software; you can redistribute it and/or
+%%% modify it under the terms of the GNU General Public License as
+%%% published by the Free Software Foundation; either version 2 of the
+%%% License, or (at your option) any later version.
 %%%
-%%%     http://www.apache.org/licenses/LICENSE-2.0
+%%% This program is distributed in the hope that it will be useful,
+%%% but WITHOUT ANY WARRANTY; without even the implied warranty of
+%%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+%%% General Public License for more details.
 %%%
-%%% Unless required by applicable law or agreed to in writing, software
-%%% distributed under the License is distributed on an "AS IS" BASIS,
-%%% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-%%% See the License for the specific language governing permissions and
-%%% limitations under the License.
+%%% You should have received a copy of the GNU General Public License
+%%% along with this program; if not, write to the Free Software
+%%% Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+%%% 02111-1307 USA
 %%%
 %%%-------------------------------------------------------------------
 
@@ -54,8 +57,8 @@
 -type addr() :: {inet:ip_address(), inet:port_number()}.
 
 -record(state,
-	{sock_mod = gen_udp             :: gen_udp | gen_tcp | fast_tls,
-	 sock                           :: inet:socket() | fast_tls:tls_socket(),
+	{sock_mod = gen_udp             :: gen_udp | gen_tcp | p1_tls,
+	 sock                           :: inet:socket() | p1_tls:tls_socket(),
 	 addr = {{0,0,0,0}, 0}          :: addr(),
 	 owner = self()                 :: pid(),
 	 username = <<"">>              :: binary(),
@@ -115,7 +118,7 @@ init([Opts]) ->
 	    ok
     end,
     TRef = erlang:start_timer(?DEFAULT_LIFETIME, self(), stop),
-    {A1, A2, A3} = p1_time_compat:timestamp(),
+    {A1, A2, A3} = now(),
     random:seed(A1, A2, A3),
     case turn_sm:add_allocation(AddrPort, Username, Realm, MaxAllocs, self()) of
 	ok ->

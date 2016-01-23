@@ -5,19 +5,22 @@
 %%% Created :  7 Aug 2009 by Evgeniy Khramtsov <ekhramtsov@process-one.net>
 %%%
 %%%
-%%% Copyright (C) 2002-2015 ProcessOne, SARL. All Rights Reserved.
+%%% stun, Copyright (C) 2002-2015   ProcessOne
 %%%
-%%% Licensed under the Apache License, Version 2.0 (the "License");
-%%% you may not use this file except in compliance with the License.
-%%% You may obtain a copy of the License at
+%%% This program is free software; you can redistribute it and/or
+%%% modify it under the terms of the GNU General Public License as
+%%% published by the Free Software Foundation; either version 2 of the
+%%% License, or (at your option) any later version.
 %%%
-%%%     http://www.apache.org/licenses/LICENSE-2.0
+%%% This program is distributed in the hope that it will be useful,
+%%% but WITHOUT ANY WARRANTY; without even the implied warranty of
+%%% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+%%% General Public License for more details.
 %%%
-%%% Unless required by applicable law or agreed to in writing, software
-%%% distributed under the License is distributed on an "AS IS" BASIS,
-%%% WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-%%% See the License for the specific language governing permissions and
-%%% limitations under the License.
+%%% You should have received a copy of the GNU General Public License
+%%% along with this program; if not, write to the Free Software
+%%% Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA
+%%% 02111-1307 USA
 %%%
 %%%-------------------------------------------------------------------
 
@@ -37,8 +40,8 @@
 -include("stun.hrl").
 
 init_test() ->
-    ?assertEqual(ok, application:start(fast_tls)),
-    ?assertEqual(ok, application:start(stun)).
+    ?assertEqual(ok, application:start(p1_tls)),
+    ?assertEqual(ok, application:start(p1_stun)).
 
 mk_cert_test() ->
     ?assertEqual(ok, file:write_file("certfile.pem", get_cert())).
@@ -99,13 +102,13 @@ bind_tls_test() ->
  		trid = TrID},
     {ok, Socket} = gen_tcp:connect({127,0,0,1}, ?STUNS_PORT,
 				   [binary, {active, true}]),
-    {ok, TLSSocket} = fast_tls:tcp_to_tls(
+    {ok, TLSSocket} = p1_tls:tcp_to_tls(
 			Socket, [{certfile, <<"certfile.pem">>}, connect]),
-    ?assertEqual({ok, <<>>}, fast_tls:recv_data(TLSSocket, <<>>)),
-    {ok, Addr} = fast_tls:sockname(TLSSocket),
+    ?assertEqual({ok, <<>>}, p1_tls:recv_data(TLSSocket, <<>>)),
+    {ok, Addr} = p1_tls:sockname(TLSSocket),
     Pkt = stun_codec:encode(Msg),
     recv(TLSSocket, <<>>, true),
-    ?assertEqual(ok, fast_tls:send(TLSSocket, Pkt)),
+    ?assertEqual(ok, p1_tls:send(TLSSocket, Pkt)),
     ?assertMatch(
        {ok, #stun{trid = TrID,
 		  'XOR-MAPPED-ADDRESS' = Addr}},
@@ -339,7 +342,7 @@ recv(Socket, Buf, false) ->
 recv(TLSSocket, Buf, true) ->
     receive
 	{tcp, _Sock, TLSData} ->
-	    {ok, Data} = fast_tls:recv_data(TLSSocket, TLSData),
+	    {ok, Data} = p1_tls:recv_data(TLSSocket, TLSData),
 	    NewBuf = <<Buf/binary, Data/binary>>,
 	    case stun_codec:decode(NewBuf, stream) of
 		{ok, Msg, _Tail} ->
@@ -354,7 +357,7 @@ recv(TLSSocket, Buf, true) ->
     end.
 
 mk_trid() ->
-    {A, B, C} = p1_time_compat:timestamp(),
+    {A, B, C} = now(),
     random:seed(A, B, C),
     random:uniform(1 bsl 96).
 
