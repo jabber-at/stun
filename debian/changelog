@@ -1,4 +1,4 @@
-erlang-p1-stun (1.0.0-0.2) unstable; urgency=medium
+erlang-p1-stun (0.9.0-0.1) unstable; urgency=medium
 
   * Merge changes from upstream:
     * Include debian/watch file.
