@@ -1,3 +1,9 @@
+erlang-p1-stun (1:1.0.1-0.2) unstable; urgency=medium
+
+  * Add PKG_VERSION to dh_rebar.conf.
+
+ -- Mathias Ertl <mati@jabber.at>  Fri, 11 Mar 2016 16:21:14 +0100
+
 erlang-p1-stun (1:1.0.1-0.1) unstable; urgency=medium
 
   * New upstream release.
