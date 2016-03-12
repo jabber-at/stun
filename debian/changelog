@@ -1,6 +1,7 @@
 erlang-p1-stun (1:1.0.1-0.2) unstable; urgency=medium
 
   * Add PKG_VERSION to dh_rebar.conf.
+  * Conflicts with ejabberd << 1:16.02.
 
  -- Mathias Ertl <mati@jabber.at>  Fri, 11 Mar 2016 16:21:14 +0100
 

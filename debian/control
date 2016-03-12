@@ -13,6 +13,7 @@ Package: erlang-p1-stun
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, erlang-base | ${erlang-abi:Depends},
          ${erlang:Depends}, erlang-p1-tls (>= 1.0.1), erlang-p1-utils (>= 1.0.3)
+Conflicts: ejabberd (<< 1:16.02)
 Suggests: stun-server | turn-server
 Description: STUN library for Erlang
  This library was written for ejabberd which still uses it.
