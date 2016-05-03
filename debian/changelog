@@ -1,6 +1,7 @@
 erlang-p1-stun (1:1.0.3-0.1) unstable; urgency=medium
 
   * New upstream release.
+  * Update erlang-p1-tls and erlang-p1-utils dependencies.
 
  -- Mathias Ertl <mati@jabber.at>  Tue, 03 May 2016 21:56:52 +0200
 
