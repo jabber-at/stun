@@ -1,3 +1,11 @@
+# Version 1.0.6
+
+* Update Fast TLS (Mickaël Rémond)
+
+# Version 1.0.5
+
+* Update Fast TLS and p1_utils (Mickaël Rémond)
+
 # Version 1.0.4
 
 * Use Fast TLS 1.0.4 (Mickaël Rémond)
