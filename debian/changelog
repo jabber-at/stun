@@ -1,3 +1,9 @@
+erlang-p1-stun (1:1.0.10-0.1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Mathias Ertl <mati@jabber.at>  Sun, 26 Mar 2017 21:06:06 +0200
+
 erlang-p1-stun (1:1.0.9-0.1) unstable; urgency=medium
 
   * New upstream release.
