@@ -1,3 +1,11 @@
+# Version 1.0.12
+
+* Updating fast_tls to version 1.0.13.
+
+# Version 1.0.11
+
+* Update Fast TLS and p1_utils (Christophe Romain)
+
 # Version 1.0.10
 
 * Update Fast TLS and p1_utils (Christophe Romain)
