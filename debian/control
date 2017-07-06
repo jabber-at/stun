@@ -3,8 +3,8 @@ Priority: optional
 Maintainer: Mathias Ertl <mati@jabber.at>
 XSBC-Orig-Maintainer: Philipp Huebner <debalance@debian.org>
 Build-Depends: debhelper (>= 9), dh-rebar, erlang-eunit, 
- erlang-p1-tls (>= 1.0.11), erlang-p1-utils (>= 1.0.7), erlang-syntax-tools
-Standards-Version: 3.9.8
+ erlang-p1-tls (>= 1.0.13), erlang-p1-utils (>= 1.0.9), erlang-syntax-tools
+Standards-Version: 4.0.0
 Section: libs
 Homepage: https://github.com/processone/stun
 VCS-Browser: https://github.com/jabber-at/stun
