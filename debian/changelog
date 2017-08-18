@@ -1,6 +1,7 @@
 erlang-p1-stun (1:1.0.14-0.1) unstable; urgency=medium
 
   * New upstream release.
+  * Remove allocate_udp_test.patch (applied upstream).
 
  -- Mathias Ertl <mati@jabber.at>  Sat, 19 Aug 2017 00:04:09 +0200
 
