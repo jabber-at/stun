@@ -1,3 +1,9 @@
+erlang-p1-stun (1:1.0.14-0.1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Mathias Ertl <mati@jabber.at>  Sat, 19 Aug 2017 00:04:09 +0200
+
 erlang-p1-stun (1:1.0.12-0.3) unstable; urgency=medium
 
   * Add allocate_udp_test.patch to fix building with Erlang 20.
