@@ -3,10 +3,10 @@ Upstream-Name: stun
 Source: https://github.com/processone/stun
 
 Files: *
-Copyright: 2002-2016 ProcessOne
-           2003-2016 Alexey Shchepin <alexey@process-one.net>
-           2009-2016 Evgeniy Khramtsov <ekhramtsov@process-one.net>
-	   2015-2016 Mickael Remond <mremond@process-one.net>
+Copyright: 2002-2017 ProcessOne
+           2003-2017 Alexey Shchepin <alexey@process-one.net>
+           2009-2017 Evgeniy Khramtsov <ekhramtsov@process-one.net>
+	   2015-2017 Mickael Remond <mremond@process-one.net>
 License: Apache-2.0
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
@@ -25,7 +25,8 @@ License: Apache-2.0
  `/usr/share/common-licenses/Apache-2.0'.
 
 Files: debian/*
-Copyright: 2014-2016 Philipp Huebner <debalance@debian.org>
+Copyright: 2014-2017 Philipp Huebner <debalance@debian.org>
+           2014-2017 Mathias Ertl <mati@jabber.at>
 License: GPL-2+
  This package is free software; you can redistribute it and/or
  modify it under the terms of the GNU General Public License as
