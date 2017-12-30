@@ -2,8 +2,8 @@ Source: erlang-p1-stun
 Priority: optional
 Maintainer: Mathias Ertl <mati@jabber.at>
 XSBC-Orig-Maintainer: Philipp Huebner <debalance@debian.org>
-Build-Depends: debhelper (>= 9), dh-rebar, erlang-base, erlang-eunit, erlang-p1-tls (>= 1.0.17), erlang-p1-utils (>= 1.0.10), erlang-syntax-tools
-Standards-Version: 4.1.1
+Build-Depends: debhelper (>= 9), dh-rebar, erlang-base  (>= 1:17.5), erlang-eunit, erlang-p1-tls (>= 1.0.17), erlang-p1-utils (>= 1.0.10), erlang-syntax-tools
+Standards-Version: 4.1.2
 Section: libs
 Homepage: https://github.com/processone/stun
 VCS-Browser: https://github.com/jabber-at/stun
@@ -11,7 +11,7 @@ VCS-Git: https://github.com/jabber-at/stun.git
 
 Package: erlang-p1-stun
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, erlang-base | ${erlang-abi:Depends},
+Depends: ${shlibs:Depends}, ${misc:Depends}, erlang-base (>= 1:17.5) | ${erlang-abi:Depends},
          ${erlang:Depends}, erlang-p1-tls (>= 1.0.17), erlang-p1-utils (>= 1.0.10)
 Suggests: stun-server | turn-server
 Description: STUN library for Erlang
