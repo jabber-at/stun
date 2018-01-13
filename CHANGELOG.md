@@ -1,3 +1,16 @@
+# Version 1.0.20
+
+* Updating fast_tls to version 1.0.20.
+
+# Version 1.0.19
+
+* Updating fast_tls to version 1.0.19.
+
+# Version 1.0.18
+
+* Updating fast_tls to version 71250ae.
+* Fix compilation warnings
+
 # Version 1.0.17
 
 * Updating fast_tls to version 1.0.18.
