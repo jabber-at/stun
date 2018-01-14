@@ -10,10 +10,10 @@ DESTDIR=$(CURDIR)/debian/erlang-p1-stun
 %:
 	dh $@ --buildsystem=rebar --with rebar
 
-#override_dh_auto_configure:
-#	# Test dh_rebar version
-#	test "`dpkg-parsechangelog --show-field Version | sed 's/.*:\([^-]*\)-.*/\1/'`" = `grep PKG_VERSION debian/dh-rebar.conf | sed 's/PKG_VERSION=//'`
-#	dh_auto_configure
+override_dh_auto_configure:
+	# Test dh_rebar version
+	test "`dpkg-parsechangelog --show-field Version | sed 's/.*:\([^-]*\)-.*/\1/'`" = `grep PKG_VERSION debian/dh-rebar.conf | sed 's/PKG_VERSION=//'`
+	dh_auto_configure
 
 
 override_dh_auto_install:
