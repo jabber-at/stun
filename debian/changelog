@@ -2,6 +2,7 @@ erlang-p1-stun (1:1.0.23-0.1) unstable; urgency=medium
 
   * New upstream version 1.0.23
   * Added debian/upstream/metadata
+  * Updated years in debian/copyright
   * Fix typo in lintian overrides
 
  -- Mathias Ertl <mati@jabber.at>  Mon, 27 Aug 2018 12:18:14 +0200
