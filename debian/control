@@ -3,7 +3,7 @@ Maintainer: Mathias Ertl <mati@jabber.at>
 XSBC-Orig-Maintainer: Philipp Huebner <debalance@debian.org>
 Section: libs
 Priority: optional
-Build-Depends: debhelper (>= 9),
+Build-Depends: debhelper (>= 11~),
                dh-rebar,
                erlang-base (>= 1:19.2),
                erlang-eunit,
