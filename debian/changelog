@@ -5,6 +5,8 @@ erlang-p1-stun (1:1.0.23-0.1) unstable; urgency=medium
   * Updated years in debian/copyright
   * Use secure copyright format uri in debian/copyright
   * Switched to debhelper 11
+  * Name Ejabberd Packaging Team <ejabberd@packages.debian.org> as
+    Orig-Maintainer
   * Fix typo in lintian overrides
 
  -- Mathias Ertl <mati@jabber.at>  Mon, 27 Aug 2018 12:18:14 +0200

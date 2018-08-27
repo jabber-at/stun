@@ -1,6 +1,6 @@
 Source: erlang-p1-stun
 Maintainer: Mathias Ertl <mati@jabber.at>
-XSBC-Orig-Maintainer: Philipp Huebner <debalance@debian.org>
+XSBC-Orig-Maintainer: Ejabberd Packaging Team <ejabberd@packages.debian.org>
 Section: libs
 Priority: optional
 Build-Depends: debhelper (>= 11~),
