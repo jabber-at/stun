@@ -5,10 +5,10 @@ Section: libs
 Priority: optional
 Build-Depends: debhelper (>= 9),
                dh-rebar,
-               erlang-base (>= 1:17.5),
+               erlang-base (>= 1:19.2),
                erlang-eunit,
-               erlang-p1-tls (>= 1.0.22),
-               erlang-p1-utils (>= 1.0.11),
+               erlang-p1-tls (>= 1.0.23),
+               erlang-p1-utils (>= 1.0.12),
                erlang-syntax-tools
 Standards-Version: 4.1.4
 VCS-Browser: https://github.com/jabber-at/stun
@@ -19,10 +19,10 @@ Package: erlang-p1-stun
 Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends},
-         erlang-base (>= 1:17.5) | ${erlang-abi:Depends},
+         erlang-base (>= 1:19.2) | ${erlang-abi:Depends},
          ${erlang:Depends},
-         erlang-p1-tls (>= 1.0.22),
-         erlang-p1-utils (>= 1.0.11)
+         erlang-p1-tls (>= 1.0.23),
+         erlang-p1-utils (>= 1.0.12)
 Suggests: stun-server | turn-server
 Description: STUN library for Erlang
  This library was written for ejabberd which still uses it.
