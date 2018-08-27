@@ -1,4 +1,4 @@
 erlang-p1-stun source: debian-watch-does-not-check-gpg-signature
-erlang-p1-stun source: testsuite-autopkgtest-missing
 erlang-p1-stun source: maintainer-upload-has-incorrect-version-number
-rlang-p1-stun source: unknown-field-in-dsc orig-maintainer
+erlang-p1-stun source: testsuite-autopkgtest-missing
+erlang-p1-stun source: unknown-field-in-dsc orig-maintainer
