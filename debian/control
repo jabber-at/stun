@@ -7,7 +7,7 @@ Build-Depends: debhelper (>= 11~),
                dh-rebar,
                erlang-base (>= 1:19.2),
                erlang-eunit,
-               erlang-p1-tls (>= 1.0.25),
+               erlang-p1-tls (>= 1.0.26),
                erlang-p1-utils (>= 1.0.13),
                erlang-syntax-tools
 Standards-Version: 4.1.4
@@ -21,7 +21,7 @@ Depends: ${shlibs:Depends},
          ${misc:Depends},
          erlang-base (>= 1:19.2) | ${erlang-abi:Depends},
          ${erlang:Depends},
-         erlang-p1-tls (>= 1.0.25),
+         erlang-p1-tls (>= 1.0.26),
          erlang-p1-utils (>= 1.0.13)
 Suggests: stun-server | turn-server
 Description: STUN library for Erlang
